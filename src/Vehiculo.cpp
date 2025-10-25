@@ -3,25 +3,25 @@
 #include <string>
 #include <iostream>
 using namespace std;
-
+// nuevamente la clase y elementos solo se definen en el archivo .h para mayor facilidad de compilación
 // --- Vehiculo ---
 Vehiculo::Vehiculo(string mrc, string mdl, string plc, bool est)
     : marca(mrc), modelo(mdl), placa(plc), estado(est) {}
 
-void Vehiculo::mostrarInfo() const {
+void Vehiculo::mostrarInfo() const {                         //muestra informaciín caracteristica de vehiculo
     cout << "Marca: " << marca << ", Modelo: " << modelo << ", Placa: " << placa
          << ", Estado: " << (estado ? "Disponible" : "No disponible") << endl;
 }
 
-string Vehiculo::getPlaca() const {
+string Vehiculo::getPlaca() const {                     //retorna la placa
     return placa;
 }
 
-bool Vehiculo::estaDisponible() const {
+bool Vehiculo::estaDisponible() const {                   //retorna el estado del vehiculo, si está alquilado o no
     return estado;
 }
 
-void Vehiculo::setDisponibilidad(bool est) {
+void Vehiculo::setDisponibilidad(bool est) {          //para poder cambiar el estado actual del auto para realizar los prestamos
     estado = est;
 }
 
@@ -30,7 +30,7 @@ Auto::Auto(string mrc, string mdl, string plc, int np, int cm, int na, int vm, b
     : Vehiculo(mrc, mdl, plc), numPuertas(np), capacidadMaletero(cm),
       numAsientos(na), velocidadMaxima(vm), automatico(aut) {}
 
-void Auto::mostrarInfo() const {
+void Auto::mostrarInfo() const {                                                         //para mostrar información exclusiva de un auto de la que se digita
     cout << "Auto - Marca: " << marca << ", Modelo: " << modelo << ", Placa: " << placa
          << ", Puertas: " << numPuertas << ", Maletero: " << capacidadMaletero
          << "L, Asientos: " << numAsientos << ", Vel. Máx: " << velocidadMaxima
@@ -38,9 +38,9 @@ void Auto::mostrarInfo() const {
          << ", Estado: " << (estado ? "Disponible" : "No disponible") << endl;
 }
 
-vector<string> Auto::infoAuto() const {
-    vector<string> info;
-    info.push_back("Marca: " + marca);
+vector<string> Auto::infoAuto() const {                                                //para guardar la información del auto en un vector
+    vector<string> info;                                                               //en el vector va toda la información del auto
+    info.push_back("Marca: " + marca);                                                 //nuestro auto completo es el vector
     info.push_back("Modelo: " + modelo);
     info.push_back("Placa: " + getPlaca()); // Usar getter para consistencia
     info.push_back("Número de puertas: " + to_string(numPuertas));
@@ -52,7 +52,7 @@ vector<string> Auto::infoAuto() const {
     return info;
 }
 
-string Auto::getPlaca() const {
+string Auto::getPlaca() const {                        //repetimos lo escrito en la clase padre para evitar errores por falta de datos
     return placa;
 }
 
@@ -70,8 +70,8 @@ Bicicleta::Bicicleta(string mrc, string mdl, string plc, int tr, int vm, string 
       tipoFreno(tf), peso(ps), cambio(tc) {}
 
 void Bicicleta::mostrarInfo() const {
-    cout << "Bicicleta - Marca: " << marca << ", Modelo: " << modelo << ", Placa: " << placa
-         << ", Ruedas: " << tamanoRuedas << " pulgadas, Vel. Máx: " << velocidadMaxima
+    cout << "Bicicleta - Marca: " << marca << ", Modelo: " << modelo << ", Placa: " << placa   //mismo proceso para las bicicletas pero con sus respectivos
+         << ", Ruedas: " << tamanoRuedas << " pulgadas, Vel. Máx: " << velocidadMaxima         //parametros
          << " km/h, Freno: " << tipoFreno << ", Peso: " << peso << " kg, "
          << (cambio ? "Con cambios" : "Sin cambios")
          << ", Estado: " << (estado ? "Disponible" : "No disponible") << endl;
@@ -92,10 +92,10 @@ vector<string> Bicicleta::infoBicicleta() const {
 }
 
 string Bicicleta::getPlaca() const {
-    return placa;
-}
-
-bool Bicicleta::estaDisponible() const {
+    return placa;                                                 //aplicamos los mismos metodos para las mismas variables en comun al nosotros 
+} 
+                                                                  //necesitar la placa, el estado y la posibilidad de cambiar este ultimo para poder alquilar
+bool Bicicleta::estaDisponible() const {                          //tanto autos como bicicletas
     return estado;
 }
 
